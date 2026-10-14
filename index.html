@@ -91,19 +91,26 @@ section{padding:56px 0 8px}
 section > .wrap > header{margin-bottom:22px}
 
 /* prices */
-.sheet{background:var(--paper);border:1px solid var(--rule);border-radius:12px}
-.group{padding:18px 20px 4px}
-.group + .group{border-top:6px solid var(--page)}
-.group h3{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px}
-.group h3 span{font-size:.85rem;font-weight:500;color:var(--muted)}
+.sheet{background:var(--paper);border:1px solid var(--rule);border-radius:12px;overflow:hidden}
+details.cat + details.cat{border-top:1px solid var(--rule)}
+details.cat > summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:1fr auto;align-items:center;column-gap:12px;padding:18px 20px}
+details.cat > summary::-webkit-details-marker{display:none}
+details.cat > summary::after{content:"+";grid-column:2;grid-row:1/span 2;font-size:1.6rem;line-height:1;color:var(--muted)}
+details.cat[open] > summary::after{content:"−"}
+details.cat .ct,details.cat .cs{grid-column:1}
+details.cat .ct{font-size:1.2rem;font-weight:750;letter-spacing:-.01em}
+details.cat .cs{font-size:.88rem;color:var(--muted)}
+details.cat[open] > summary{background:#f7f9fa;border-bottom:1px solid var(--rule)}
+.rows{padding:0 20px 4px}
 .row{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:16px;padding:12px 0;border-bottom:1px solid var(--rule)}
-.group .row:last-child{border-bottom:0}
+.rows .row:last-child{border-bottom:0}
 .row .name{font-weight:600}
 .row .note{grid-column:1;font-size:.9rem;color:var(--muted)}
 .row .price{grid-row:1/span 2;grid-column:2;align-self:center;text-align:right;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
 .row .price em{display:block;font-style:normal;font-weight:500;font-size:.78rem;color:var(--muted)}
 .row .price.free{color:var(--ok)}
-.sheet .foot{padding:14px 20px;border-top:1px solid var(--rule);font-size:.92rem;color:var(--muted)}
+.anyelse{margin:14px 0 2px;padding:12px 14px;background:#fff8d6;border-left:4px solid var(--tape);border-radius:4px;font-weight:600}
+.sheet .foot{padding:14px 20px;border-top:1px solid var(--rule);background:#f7f9fa;font-size:.92rem;color:var(--muted)}
 .sheet .foot p + p{margin-top:4px}
 
 /* how it works */
@@ -232,38 +239,85 @@ footer b{color:var(--ink)}
   <section id="prices"><div class="wrap">
     <header>
       <h2>Prices</h2>
-      <p class="lede">Labor is listed below. Where it says "+ part," I look up the part for your exact model and tell you the total before I order anything.</p>
+      <p class="lede">Tap a category to see everything I fix. Where it says "+ part," I look up the part for your exact model and tell you the total first. You pay for the part before I order it, and for the labor when it's fixed.</p>
     </header>
 
     <div class="sheet">
-      <div class="group">
-        <h3>Phones <span>iPhone and Android</span></h3>
-        <div class="row"><span class="name">Diagnosis</span><span class="note">Find out what's wrong and what it'll cost</span><span class="price free">Free</span></div>
-        <div class="row"><span class="name">Screen replacement</span><span class="note">Cracked, black, or not responding to touch</span><span class="price">$45<em>+ part</em></span></div>
-        <div class="row"><span class="name">Battery replacement</span><span class="note">Dies fast, shuts off early, or says "Service"</span><span class="price">$30<em>+ part</em></span></div>
-        <div class="row"><span class="name">Charging port clean</span><span class="note">Loose cable or slow charging. Usually it's pocket lint</span><span class="price">$10</span></div>
-        <div class="row"><span class="name">Charging port replacement</span><span class="note">When a cleaning doesn't fix it. iPhone and phones with a swappable port; I'll confirm your model first</span><span class="price">$35<em>+ part</em></span></div>
-        <div class="row"><span class="name">Forgotten passcode reset</span><span class="note">Your own phone only. This erases it, and you'll need your Apple ID or Google login afterward</span><span class="price">$25</span></div>
-        <div class="row"><span class="name">New phone setup and data transfer</span><span class="note">Photos, contacts, and apps moved to your new phone</span><span class="price">$20</span></div>
-      </div>
-      <div class="group">
-        <h3>Consoles <span>Xbox, PlayStation, Switch</span></h3>
-        <div class="row"><span class="name">Deep dust clean</span><span class="note">Opened up, fan and heatsink cleaned. Fixes most loud or hot consoles</span><span class="price">$30</span></div>
-        <div class="row"><span class="name">Clean and new thermal paste</span><span class="note">Xbox and PS4 that overheat or shut off mid-game. PS5s use liquid metal, so they get the deep clean only</span><span class="price">$45</span></div>
-        <div class="row"><span class="name">HDMI port replacement</span><span class="note">No picture, flickering, or a bent or loose port. PS5, Xbox Series, PS4, Switch dock</span><span class="price">$70<em>+ part</em></span></div>
-        <div class="row"><span class="name">Controller stick replacement</span><span class="note">Xbox and PlayStation drift fixed for good with a new stick</span><span class="price">$25<em>+ part</em></span></div>
-        <div class="row"><span class="name">Joy-Con stick drift fix</span><span class="note">The drifting stick swapped for a new one</span><span class="price">$15<em>+ part</em></span></div>
-        <div class="row"><span class="name">Controller drift clean</span><span class="note">Xbox and PlayStation, mild drift. If it doesn't help, it's free and goes toward a stick replacement</span><span class="price">$10</span></div>
-      </div>
-      <div class="group">
-        <h3>Laptops <span>Windows and Mac</span></h3>
-        <div class="row"><span class="name">Slow laptop tune-up</span><span class="note">Cleanup, startup fixes, malware and adware removal</span><span class="price">$35</span></div>
-        <div class="row"><span class="name">Fan clean</span><span class="note">Loud fan, hot keyboard, slowing down when warm</span><span class="price">$35</span></div>
-        <div class="row"><span class="name">Battery replacement</span><span class="note">Most models with a removable internal battery</span><span class="price">$40<em>+ part</em></span></div>
-      </div>
+      <details class="cat" open>
+        <summary><span class="ct">Phones</span><span class="cs">iPhone and Android, 14 repairs</span></summary>
+        <div class="rows">
+          <div class="row"><span class="name">Diagnosis</span><span class="note">Find out what's wrong and what it'll cost</span><span class="price free">Free</span></div>
+          <div class="row"><span class="name">Screen replacement</span><span class="note">Cracked, black, lines, or not responding to touch</span><span class="price">$45<em>+ part</em></span></div>
+          <div class="row"><span class="name">Battery replacement</span><span class="note">Dies fast, shuts off early, or says "Service"</span><span class="price">$30<em>+ part</em></span></div>
+          <div class="row"><span class="name">Back glass replacement</span><span class="note">iPhone 14, 14 Plus, and every iPhone 15 and 16. Older models, text me</span><span class="price">$45<em>+ part</em></span></div>
+          <div class="row"><span class="name">Camera lens glass</span><span class="note">Cracked glass over the back camera</span><span class="price">$20<em>+ part</em></span></div>
+          <div class="row"><span class="name">Rear or front camera</span><span class="note">Blurry, shaky, black, or won't focus</span><span class="price">$35<em>+ part</em></span></div>
+          <div class="row"><span class="name">Charging port clean</span><span class="note">Loose cable or slow charging. Usually it's pocket lint</span><span class="price">$10</span></div>
+          <div class="row"><span class="name">Charging port replacement</span><span class="note">When a cleaning doesn't fix it. iPhone and phones with a swappable port; I'll confirm your model first</span><span class="price">$35<em>+ part</em></span></div>
+          <div class="row"><span class="name">Speaker and mic cleaning</span><span class="note">Muffled calls, quiet speaker, people can't hear you</span><span class="price">$10</span></div>
+          <div class="row"><span class="name">Water damage cleanup</span><span class="note">Opened, cleaned, and dried properly. If it doesn't come back, you don't pay</span><span class="price">$40</span></div>
+          <div class="row"><span class="name">Screen protector, installed</span><span class="note">Tempered glass, applied clean with no bubbles</span><span class="price">$15</span></div>
+          <div class="row"><span class="name">Forgotten passcode reset</span><span class="note">Your own phone only. This erases it, and you'll need your Apple ID or Google login afterward</span><span class="price">$25</span></div>
+          <div class="row"><span class="name">Stuck on the logo or boot loop</span><span class="note">Software restore. I'll try to keep your data first</span><span class="price">$25</span></div>
+          <div class="row"><span class="name">New phone setup and data transfer</span><span class="note">Photos, contacts, and apps moved to your new phone</span><span class="price">$20</span></div>
+        </div>
+      </details>
+      <details class="cat">
+        <summary><span class="ct">Consoles</span><span class="cs">Xbox, PlayStation, Switch, 6 repairs</span></summary>
+        <div class="rows">
+          <div class="row"><span class="name">Deep dust clean</span><span class="note">Opened up, fan and heatsink cleaned. Fixes most loud or hot consoles</span><span class="price">$30</span></div>
+          <div class="row"><span class="name">Clean and new thermal paste</span><span class="note">Xbox and PS4 that overheat or shut off mid-game. PS5s use liquid metal, so they get the deep clean only</span><span class="price">$45</span></div>
+          <div class="row"><span class="name">HDMI port replacement</span><span class="note">No picture, flickering, or a bent or loose port. PS5, Xbox Series, PS4, Switch dock</span><span class="price">$70<em>+ part</em></span></div>
+          <div class="row"><span class="name">PS5 storage upgrade</span><span class="note">An M.2 SSD installed and set up so you can fit more games</span><span class="price">$20<em>+ drive</em></span></div>
+          <div class="row"><span class="name">PS4 or Xbox One SSD upgrade</span><span class="note">Swap the slow hard drive for an SSD. Faster loading, system reinstalled</span><span class="price">$30<em>+ drive</em></span></div>
+          <div class="row"><span class="name">Software fix</span><span class="note">Won't boot, stuck updating, or crashing. Safe mode repair, rebuild, or reset</span><span class="price">$15</span></div>
+        </div>
+      </details>
+      <details class="cat">
+        <summary><span class="ct">Controllers</span><span class="cs">Xbox, PlayStation, Joy-Con, 5 repairs</span></summary>
+        <div class="rows">
+          <div class="row"><span class="name">Stick replacement</span><span class="note">Xbox and PlayStation drift fixed for good with a new stick</span><span class="price">$25<em>+ part</em></span></div>
+          <div class="row"><span class="name">Joy-Con stick drift fix</span><span class="note">The drifting stick swapped for a new one</span><span class="price">$15<em>+ part</em></span></div>
+          <div class="row"><span class="name">Drift clean</span><span class="note">Mild drift. If it doesn't help, it's free and goes toward a stick replacement</span><span class="price">$10</span></div>
+          <div class="row"><span class="name">Controller battery</span><span class="note">PS4 and PS5 controllers that die fast or won't hold a charge</span><span class="price">$15<em>+ part</em></span></div>
+          <div class="row"><span class="name">Sticky or broken buttons</span><span class="note">Bumpers, triggers, or buttons that stick, double-click, or don't click</span><span class="price">$15<em>+ part</em></span></div>
+        </div>
+      </details>
+      <details class="cat">
+        <summary><span class="ct">Laptops and PCs</span><span class="cs">Windows, Mac, gaming PCs, 10 repairs</span></summary>
+        <div class="rows">
+          <div class="row"><span class="name">Slow laptop tune-up</span><span class="note">Cleanup, startup fixes, malware and adware removal</span><span class="price">$35</span></div>
+          <div class="row"><span class="name">Fresh Windows install</span><span class="note">Wiped and reinstalled clean, with your files backed up and put back</span><span class="price">$45</span></div>
+          <div class="row"><span class="name">Fan clean</span><span class="note">Loud fan, hot keyboard, slowing down when warm</span><span class="price">$35</span></div>
+          <div class="row"><span class="name">Battery replacement</span><span class="note">Most Windows laptops. MacBook batteries are glued in, so text me first</span><span class="price">$40<em>+ part</em></span></div>
+          <div class="row"><span class="name">Screen replacement</span><span class="note">Cracked or dead laptop screen. Most Windows laptops; MacBooks, text me</span><span class="price">$45<em>+ part</em></span></div>
+          <div class="row"><span class="name">RAM or SSD upgrade</span><span class="note">Installed, with Windows and your files moved to the new drive</span><span class="price">$25<em>+ part</em></span></div>
+          <div class="row"><span class="name">Sticky keyboard clean</span><span class="note">Crumbs, spills, or keys that stick</span><span class="price">$15</span></div>
+          <div class="row"><span class="name">Gaming PC clean</span><span class="note">Dust out, fans and filters cleaned, cables tidied</span><span class="price">$30</span></div>
+          <div class="row"><span class="name">PC part install</span><span class="note">GPU, RAM, SSD, fans, or power supply, installed and tested</span><span class="price">$20<em>per part</em></span></div>
+          <div class="row"><span class="name">Custom PC build</span><span class="note">You bring the parts, I build it and install Windows and drivers</span><span class="price">$60</span></div>
+        </div>
+      </details>
+      <details class="cat">
+        <summary><span class="ct">Everything else</span><span class="cs">Tablets, earbuds, handhelds, and more</span></summary>
+        <div class="rows">
+          <p class="anyelse">If it has a battery, a screen, a port, or buttons, I can probably fix it. Book a diagnosis or text me what it is.</p>
+          <div class="row"><span class="name">Steam Deck and handhelds</span><span class="note">Stick drift, fan clean, or SSD upgrade on Steam Deck, ROG Ally, and Legion Go</span><span class="price">$25<em>+ part</em></span></div>
+          <div class="row"><span class="name">iPad and tablets</span><span class="note">Charging port clean, software restore, setup. Screens and batteries, text me for a quote</span><span class="price">$10<em>and up</em></span></div>
+          <div class="row"><span class="name">AirPods and earbuds</span><span class="note">Deep clean for muffled sound and gunked-up charging cases</span><span class="price">$10</span></div>
+          <div class="row"><span class="name">Headphones</span><span class="note">New ear pads, cable or jack repair, Bluetooth headphone batteries</span><span class="price">$10<em>and up</em></span></div>
+          <div class="row"><span class="name">Bluetooth speakers</span><span class="note">Battery, charging port, or won't turn on</span><span class="price">$25<em>+ part</em></span></div>
+          <div class="row"><span class="name">Gaming mouse and keyboard</span><span class="note">Double-clicking mouse, dead switches, sticky or broken keys</span><span class="price">$15<em>+ part</em></span></div>
+          <div class="row"><span class="name">Kindle and e-readers</span><span class="note">Battery replacement, stuck or frozen, won't charge</span><span class="price">$25<em>+ part</em></span></div>
+          <div class="row"><span class="name">Retro consoles and Game Boys</span><span class="note">Cleaning, cartridge pins, battery and shell swaps</span><span class="price">$15<em>and up</em></span></div>
+          <div class="row"><span class="name">Smartwatches</span><span class="note">Bands, software resets, and setup. Screens and batteries, text me</span><span class="price">Ask</span></div>
+          <div class="row"><span class="name">TVs and monitors</span><span class="note">No picture or no power. Some are worth fixing, some aren't; I'll be honest</span><span class="price">Ask</span></div>
+        </div>
+      </details>
       <div class="foot">
         <p>Same-day rush is +$15. Two consoles cleaned together are $50.</p>
-        <p>Something not listed? Text me what's wrong and I'll tell you if I can fix it.</p>
+        <p>Diagnosis is free. If I have to open up a console or laptop to find the problem and you decide not to fix it, it's $10 for my time.</p>
+        <p>Don't see your device or problem? I can probably still fix it. <a href="#book">Book a diagnosis</a> or <a href="sms:+17868844281">text me</a>.</p>
       </div>
     </div>
   </div></section>
@@ -272,14 +326,14 @@ footer b{color:var(--ink)}
     <header><h2>How it works</h2></header>
     <ol class="steps">
       <li><h3>Book or text</h3><p>Fill out the form below or text me. Tell me the device and what's wrong.</p></li>
-      <li><h3>Get it to me</h3><p>Drop it at the dorm, meet up around Albany, or mail it in. I check it and confirm the price before starting.</p></li>
-      <li><h3>Pick it up fixed</h3><p>Most repairs are done in 1 to 2 days. You pay when you get it back.</p></li>
+      <li><h3>Get it to me</h3><p>Drop it at the dorm, meet up around Albany, or mail it in. I check it and confirm the price. If it needs a part, you pay for the part so I can order it.</p></li>
+      <li><h3>Pick it up fixed</h3><p>Most repairs are done in 1 to 2 days. You pay for the labor when you get it back.</p></li>
     </ol>
     <ul class="deal">
       <li>Free diagnosis</li>
       <li>Price confirmed before any work</li>
       <li>30-day warranty on my repairs</li>
-      <li>Pay when it's fixed</li>
+      <li>Labor paid when it's fixed</li>
     </ul>
   </div></section>
 
@@ -351,9 +405,11 @@ footer b{color:var(--ink)}
           <label for="device">Device<input id="device" name="device" placeholder="iPhone 13, Xbox Series S…"></label>
           <label for="service">Repair<select id="service" name="service">
             <option>Not sure, need a diagnosis</option>
-            <optgroup label="Phones"><option>Screen replacement</option><option>Battery replacement</option><option>Charging port clean</option><option>Charging port replacement</option><option>Forgotten passcode reset</option><option>Phone setup and data transfer</option></optgroup>
-            <optgroup label="Consoles"><option>Console deep clean</option><option>Console clean + thermal paste</option><option>HDMI port replacement</option><option>Controller stick replacement</option><option>Joy-Con stick drift</option><option>Controller drift clean (Xbox/PS)</option></optgroup>
-            <optgroup label="Laptops"><option>Laptop tune-up</option><option>Laptop fan clean</option><option>Laptop battery</option></optgroup>
+            <optgroup label="Phones"><option>Screen replacement</option><option>Battery replacement</option><option>Back glass replacement</option><option>Camera lens glass</option><option>Rear or front camera</option><option>Charging port clean</option><option>Charging port replacement</option><option>Speaker and mic cleaning</option><option>Water damage cleanup</option><option>Screen protector, installed</option><option>Forgotten passcode reset</option><option>Stuck on the logo or boot loop</option><option>New phone setup and data transfer</option></optgroup>
+            <optgroup label="Consoles"><option>Deep dust clean</option><option>Clean and new thermal paste</option><option>HDMI port replacement</option><option>PS5 storage upgrade</option><option>PS4 or Xbox One SSD upgrade</option><option>Software fix</option></optgroup>
+            <optgroup label="Controllers"><option>Stick replacement</option><option>Joy-Con stick drift fix</option><option>Drift clean</option><option>Controller battery</option><option>Sticky or broken buttons</option></optgroup>
+            <optgroup label="Laptops and PCs"><option>Slow laptop tune-up</option><option>Fresh Windows install</option><option>Fan clean</option><option>Battery replacement</option><option>Screen replacement</option><option>RAM or SSD upgrade</option><option>Sticky keyboard clean</option><option>Gaming PC clean</option><option>PC part install</option><option>Custom PC build</option></optgroup>
+            <optgroup label="Everything else"><option>Steam Deck and handhelds</option><option>iPad and tablets</option><option>AirPods and earbuds</option><option>Headphones</option><option>Bluetooth speakers</option><option>Gaming mouse and keyboard</option><option>Kindle and e-readers</option><option>Retro consoles and Game Boys</option><option>Smartwatches</option><option>TVs and monitors</option><option>Something else (tell me below)</option></optgroup>
           </select></label>
         </div>
         <label for="issue">What's going on?<textarea id="issue" name="issue" placeholder="Dropped it, top-left corner cracked, touch still works."></textarea></label>
@@ -382,7 +438,8 @@ footer b{color:var(--ink)}
   <section id="faq"><div class="wrap">
     <header><h2>Questions</h2></header>
     <div class="faq">
-      <details><summary>Do I pay before the repair?</summary><p>No. Diagnosis is free, you approve the price first, and you pay when you get it back. Mail-in repairs are paid before I ship them back.</p></details>
+      <details><summary>Do I pay before the repair?</summary><p>Only for parts. If your repair needs a part, you pay for it before I order it, so I'm not stuck with a part nobody picks up. Labor is paid when you get your device back. Repairs with no part, like cleanings and software fixes, are paid at pickup. Mail-in repairs are paid in full before I ship them back.</p></details>
+      <details><summary>Is diagnosis really free?</summary><p>Yes. The only exception: if I have to open up a console or laptop to find the problem and you decide not to fix it, it's $10 for my time. Phones are always free to check.</p></details>
       <details><summary>What if it can't be fixed?</summary><p>Then you don't pay anything. I'll tell you what's wrong and give it back.</p></details>
       <details><summary>How long does it take?</summary><p>Most repairs take 1 to 2 days, depending on whether I need to order a part. Same-day rush is +$15 when I have the part on hand.</p></details>
       <details><summary>Is there a warranty?</summary><p>Yes. If my repair or the part I installed fails within 30 days, I fix it free. It doesn't cover new drops, cracks, or water damage.</p></details>
